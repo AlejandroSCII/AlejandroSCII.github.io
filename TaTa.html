@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tteonajima</title>
+</head>
+<style>
+
+    @media only screen and (max-width: 600px) {
+     
+    }
+        body {
+            background-color: #7f00b2;
+        }
+        #mostrarImagen {
+            display: block;
+            margin: 0 auto;
+            border-color: lightblue;
+            border-radius: 30px;
+            width: 150px;
+            height: 100px;
+            background-color: lightpink;
+        }
+        #imagen {
+            display: block;
+            margin: 0 auto;
+            border-radius: 20px;
+        }
+        #reproductor {
+            display: block;
+            margin: 0 auto;
+        }
+        #titulo {
+            text-align: center;
+            text-transform: uppercase;
+        }
+        #subtitulo {
+            text-align: center;
+            color: gray;
+        }
+        h1 {
+            text-align: center;
+            background-color: lightblue;
+        }
+    
+    </style>
+    <body>
+        <h1>HOOOLAAA, ¿Cómo Estás? Espero Que Bien <br> Dale play a la rolita y ve dandole click según la letra:3</h1>
+        <audio id="reproductor" controls>
+            <source src="Love Me Again.mp3" type="audio/mpeg">
+        </audio>
+        <br>
+        <button id="mostrarImagen"><h2>Dame Click</h2></button>
+        <div id="contenedorImagen"><br>
+            <img id="imagen" style="display: none; width: 400px;">
+            <h2 id="titulo"></h2>
+            <h3 id="subtitulo"></h3>
+    
+        </div>
+    
+        <script>
+             var reproductor = document.getElementById("reproductor");
+    
+            var botonMostrar = document.getElementById("mostrarImagen");
+            var imagen = document.getElementById("imagen");
+            var titulo = document.getElementById("titulo");
+    
+            var imagenes = [
+                { src: "imagen1.jpg", title: ":3" },
+                { src: "imagen2.jpg", title: "Tampoco los recuerdos tenían sentido", subtitle: "chueokdo uimi eopsi" },
+                { src: "imagen3.jpg", title: "Desapareciste de mí", subtitle: "naege neon sarajigo" },
+                { src: "imagen4.jpg", title: "Incluso ahora, no puedo", subtitle: "ijjeumedo I can't" },
+                { src: "imagen5.jpg", title: "Dejarte ir, dejarte ir", subtitle: "Let you go, let you go" },
+                { src: "imagen6.jpg", title: "¿Es eso todo lo que tienes que decir?", subtitle: "geu mari dain geoni" },
+                { src: "imagen7.jpg", title: "Si dejas solo una palabra", subtitle: "hanmadiman namgigo" },
+                { src: "imagen8.jpg", title: "Y te arrepientes", subtitle: "huhoehamyeon" },
+                { src: "imagen9.jpg", title: "¿No me lo dirás? ¿Me lo dirás?", subtitle: "Won't you let me know? Let me know?" },
+                { src: "imagen10.jpg", title: "Sí, voy a ser honesto", subtitle: "geurae na soljikage" },
+                { src: "imagen11.jpg", title: "Quiero decirlo todo", subtitle: "da malhallae" },
+                { src: "imagen12.jpg", title: "Cada día, con quien estás, dónde estás", subtitle: "neoneun maeil eotteon saram eotteon gose" },
+                { src: "imagen13.jpg", title: "A menudo pienso en ti, en lo que estás haciendo", subtitle: "myeot beonssigina mwol haneunji neol saenggakae" },
+                { src: "imagen14.jpg", title: "Estoy perdido sin ti, cariño", subtitle: "Lost without you, baby" },
+                { src: "imagen15.jpg", title: "Ojalá me amaras otra vez", subtitle: "I wish you would love me again" },
+                { src: "imagen16.jpg", title: "No, no quiero a nadie más", subtitle: "No, I don't want nobody else" },
+                { src: "imagen17.jpg", title: "Ojalá pudieras amarme otra vez, otra vez", subtitle: "I wish you could love me again, again" },
+                { src: "imagen18.jpg", title: "Ojalá me amaras otra vez", subtitle: "I wish you would love me again" },
+                { src: "imagen19.jpg", title: "No, no quiero a nadie más", subtitle: "No, I don't want nobody else" },
+                { src: "imagen20.jpg", title: "Ojalá pudieras amarme otra vez, otra vez", subtitle: "I wish you could love me again, again" },
+                { src: "imagen21.jpg", title: "¿Soy el único que se siente así?", subtitle: "naman jakku ireon geonji" },
+                { src: "imagen22.jpg", title: "¿Está bien para ti esa otra persona a mi lado?", subtitle: "nae yeope ttan saram gwaenchanni" },
+                { src: "imagen23.jpg", title: "Regresar en el tiempo lentamente", subtitle: "yejeoneuro cheoncheonhi" },
+                { src: "imagen24.jpg", title: "Haz que se vea mejor, sí, haz que dure para siempre", subtitle: "Make it feel better, yeah, make it forever" },
+                { src: "imagen25.jpg", title: "No digas que todo está bien", subtitle: "gwaenchanta malhaji ma" },
+                { src: "imagen26.jpg", title: "Dije que estoy bien, dije que estaré bien", subtitle: "Said I'm alright, said I'll be ﬁne" },
+                { src: "imagen27.jpg", title: "Lo siento, es una mentira, no te vayas", subtitle: "I'm sorry, geojinmariya tteonajima" },
+                { src: "imagen28.jpg", title: "No te alejes", subtitle: "jeori gajima meolli" },
+                { src: "imagen29.jpg", title: "Sí, voy a ser honesto", subtitle: "geurae na soljikage" },
+                { src: "imagen30.jpg", title: "Quiero decirlo todo", subtitle: "da malhallae" },
+                { src: "imagen31.jpg", title: "Cada día, con quien estás, dónde estás", subtitle: "neoneun maeil eotteon saram eotteon gose" },
+                { src: "imagen32.jpg", title: "A menudo pienso en ti, en lo que estás haciendo", subtitle: "myeot beonssigina mwol haneunji neol saenggakae" },
+                { src: "imagen33.jpg", title: "Estoy perdido sin ti, cariño", subtitle: "Lost without you, baby" },
+                { src: "imagen34.jpg", title: "Estoy perdido sin ti, cariño", subtitle: "Lost without you, baby" },
+                { src: "imagen35.jpg", title: "Estoy perdido sin ti, cariño", subtitle: "Lost without you, baby" },
+                { src: "imagen36.jpg", title: "Ojalá me amaras otra vez", subtitle: "I wish you would love me again" },
+                { src: "imagen37.jpg", title: "No, no quiero a nadie más", subtitle: "No, I don't want nobody else" },
+                { src: "imagen38.jpg", title: "Ojalá pudieras amarme otra vez, otra vez", subtitle: "I wish you could love me again, again" },
+                { src: "imagen39.jpg", title: "Ojalá me amaras otra vez", subtitle: "I wish you would love me again" },
+                { src: "imagen40.jpg", title: "No, no quiero a nadie más", subtitle: "No, I don't want nobody else" },
+                { src: "imagen41.jpg", title: "Ojalá pudieras amarme otra vez, otra vez", subtitle: "I wish you could love me again, again" },
+                { src: "imagen42.jpg", title: "Ojalá me amaras otra vez", subtitle: "I wish you would love me again" },
+                { src: "imagen43.jpg", title: "No, no quiero a nadie más", subtitle: "No, I don't want nobody else" },
+                { src: "imagen44.jpg", title: "Ojalá pudieras amarme otra vez, otra vez", subtitle: "I wish you could love me again, again" },
+                { src: "imagen45.jpg", title: "TE AMO MUCHÍSIMO", subtitle: "¿Sabes? En serio eres una chica espectacular, cuando te conocí me di cuenta que eras una chica super amable y de buen corazón, siempre despertaste en mi curiosidad, curiosidad de conocerte. Eres una chica super fuerte que puede con todo y de la cuál estoy muy orgulloso por la gran mujer que es en serio que si. Simpre te ame y te amo, eres la única persona que me entiende ya prácticamente me anticipas en lo que voy a hacer o decir. Quiero ser tu compañero, el que siempre esté contigo pase lo que pase, el que te acompañe por el resto de nuestros días. Te amo mi cachetona de ojos bonitos, ojos los cuales quiero ver SIEMPRE, aquellos ojos grandotes que tanto me gustan:3  ¿Aceptas amarme toda la vida? quiero que seas la madre de mis hijos" },
+    
+            ];
+    
+            var indiceImagen = 0;
+    
+            botonMostrar.addEventListener("click", function() {
+                if (indiceImagen < imagenes.length) {
+                    imagen.src = imagenes[indiceImagen].src;
+                    titulo.textContent = imagenes[indiceImagen].title;
+                    subtitulo.textContent = imagenes[indiceImagen].subtitle;
+                    imagen.style.display = "block";
+                    indiceImagen++;
+                } else {
+    
+                    indiceImagen = 0;
+                    imagen.style.display = "none";
+                    titulo.textContent = "";
+                    subtitulo.textContent = "";
+                }
+            });
+        </script>
+    </body>
+    </html>
